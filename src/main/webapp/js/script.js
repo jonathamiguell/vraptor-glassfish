@@ -18,22 +18,22 @@ function mostraDetalhe(id) {
             $("#overlay").css("visibility", "visible");
         }
     });
-
 }
 ;
+function  editar() {
+    $('#form-edita-cadastro').show();
+
+}
 
 $(document).ready(function () {
     Produto.hideNewProdutoForm();
+    Produto.hideEditaCadastro();
 
     $("#btn-novo").click(function () {
         Produto.openNewProdutoForm();
     });
     $("#btn-cancelar").click(function () {
         Produto.hideNewProdutoForm();
-    });
-
-    $('#btn-novo').click(function () {
-        Produto.openNewProdutoForm();
     });
 });
 
@@ -43,6 +43,12 @@ $("#btn-fechar").on("click", function () {
 });
 
 var Produto = {};
+Produto.hideEditaCadastro = function () {
+    $('#form-edita-cadastro').hide();
+};
+Produto.openEditaCadastro = function () {
+    $('#form-edita-cadastro').show();
+};
 Produto.openNewProdutoForm = function () {
     $('#form-cadastro').show();
     $('#div-btn-form').hide();

@@ -3,52 +3,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>Olá mundo</title>
+        <meta charset="utf-8">
+        <title>Index</title>
         <link href="<c:url value="/css/estilo.css"/>" rel="stylesheet" type="text/css"/>
+        <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
+        <title>Projeto</title>
     </head>
     <body>
-        <h1>Lista de Produtos</h1>
-        <hr>
-
-        <form method="POST" action="${linkTo[ProdutosController].add}">
-
-            Descrição: <input type="text" name="p.nome" required/><br>
-            Preço:     <input type="text" name="p.preco" required /><br>
-            <button type="submit">Salvar</button>
-        </form>
-
-        <hr>
-
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Nome</td>
-                <td>Preço R$</td>
-                <td>Ação</td>
-            </tr>
-            <c:if test="${not empty produtos}">
-                <c:forEach items="${produtos}" var="p">
-                    <tr>
-                        <td>${p.id}</td>
-                        <td>${p.nome}</td>
-                        <td><button onclick="mostraDetalhe(${p.id});">Detalhes</button></td>
-                    </tr>
-
-                </c:forEach>
-            </c:if>
-        </table>
-
-        <div id="overlay">
-            <div>
-                <h3>Detalhes do produto</h3>
-                ID: <span id="pID"></span> <br>
-                NOME: <span id="pNOME"></span> <br>
-                PREÇO: <span id="pPRECO"></span> <br>
-                <button id="btn-fechar">Fechar</button>
-            </div>
-        </div>
-        <script src="<c:url value="/js/jquery.js"/>"></script>
-        <script src="<c:url value="/js/script.js"/>"></script>
+        <c:if test="${not empty carrinho.total }">
+            <h2>Carrinho: ${carrinho.total}</h2> <a href="<c:url value="/cart/clear" />"><button>Encerrar Compra</button></a>
+        </c:if>
+        <h1>Menu</h1>
+        <a href="/vraptor-glassfish/categoria">Categorias</a>
+        <a href="/vraptor-glassfish/produto">Produtos</a>
     </body>
 </html>

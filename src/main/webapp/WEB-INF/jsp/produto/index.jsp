@@ -17,29 +17,31 @@
             <div class="container-fluid main">
                 <div class="row-fluid">
                     <div class="span12">
+                        <div class="well" id="div-carrinho">
+                            <c:if test="${not empty carrinho.total }">
+                                <h2>Carrinho: ${carrinho.total}</h2> <a href="<c:url value="/cart/clear" />"><button>Encerrar Compra</button></a>
+                            </c:if>
+                        </div>
                         <div class="well" id="form-cadastro" >
-                            <form method="POST" action="${linkTo[ProdutosController].adicionar}">
+                            <form method="POST" action="${linkTo[ProdutoController].adicionar}">
                                 <fieldset> 
                                     <legend> Cadastrar Produto</legend>
                                     <div class="row">
                                         <label class="span3">Nome</label>
                                         <label class="span3">Descrição</label>
                                         <label class="span3">Preço</label>
-                                    </div>
+                                    </div> 
+                                    <br />
                                     <div class="row">
-                                        <span class="span3"> 
-                                            <br />
+                                        <span class="span3">
                                             <input type="text" id="nome" class="input-medium" name="p.nome" required/>
                                         </span>
-                                        <span class="span3"> 
-                                            <br />
+                                        <span class="span3">
                                             <input type="text" id="descricao" class="input-medium" name="p.descricao" required/>
                                         </span>
-                                        <span class="span3"> 
-                                            <br />
+                                        <span class="span3">
                                             <input type="text" id="preco" class="input-medium" name="p.preco" required />
                                         </span>
-                                        <br />
                                         <span class="span3">
                                             <button type="submit" id="btn-salvar" class="btn btn-primary">Salvar</button>
                                             <button type="button" id="btn-cancelar" class="btn btn-danger">Cancelar</button>
@@ -53,7 +55,9 @@
                             <button type="button" id="btn-novo" class="btn btn-primary">Novo +</button>
                         </div>
                         <div class="well">
-                            <h3>Produtos Cadastrados</h3>
+                            <legend>
+                                <h3>Produtos Cadastrados</h3>
+                            </legend>
                             <table id="produtos-cadastrados" class="table-list">
                                 <thead>
                                     <tr>
@@ -75,14 +79,45 @@
                                             <td>${p.descricao}</td>
                                             <td>${p.precoFormatado}</td>
                                             <td><button  class="btn btn-info" id=btn-detalhes" onclick="mostraDetalhe(${p.id});">Detalhes</button></td>
-                                            <td><button  class="btn btn-warning" id=btn-detalhes" onclick="">Editar</button></td>
-                                            <td><button  class="btn btn-success" id=btn-detalhes" onclick="">Comprar</button></td>
-                                            <td><button type="button" id="btn-excluir" value="/produtos/remover/${p.id}"  class="btn btn-danger"> Excluir </button> </td>
+                                            <td><button  class="btn btn-warning" onclick="editar();" id=btn-editar" >Editar</button></td>
+                                            <td><a href="editar?id=${p.id}">Editar</a></td>
+                                            <td><a href="<c:url value="/produto/${p.id}/remover" />"><button  class="btn btn-danger" id=btn-remover">Remover</button></a></td>
+                                            <td><a href="<c:url value="/cart/${p.id}/adicionar" />"><button  class="btn btn-success" id=btn-comprar">Comprar</button></a></td>   
+                                            <td><button type="_method" id="btn-excluir" value="DELETE"  class="btn btn-danger"> Excluir </button> </td>
                                         </tr>
 
                                     </c:forEach>
                                 </c:if>
                             </table>
+                        </div>
+
+                        <div class="well" id="form-edita-cadastro" >
+                            <form method="POST">
+                                <fieldset> 
+                                    <legend> Editar Produto</legend>
+                                    <div class="row">
+                                        <label class="span3">Nome</label>
+                                        <label class="span3">Descrição</label>
+                                        <label class="span3">Preço</label>
+                                    </div> 
+                                    <br />
+                                    <div class="row">
+                                        <span class="span3">
+                                            <input type="text" id="nome" class="input-medium" name="p.nome" required/>
+                                        </span>
+                                        <span class="span3">
+                                            <input type="text" id="descricao" class="input-medium" name="p.descricao" required/>
+                                        </span>
+                                        <span class="span3">
+                                            <input type="text" id="preco" class="input-medium" name="p.preco" required />
+                                        </span>
+                                        <span class="span3">
+                                            <button type="submit" id="btn-salvar" class="btn btn-primary">Salvar</button>
+                                            <button type="button" id="btn-cancelar" class="btn btn-danger">Cancelar</button>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                 </div>

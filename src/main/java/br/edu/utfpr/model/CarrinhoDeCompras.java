@@ -7,26 +7,52 @@ package br.edu.utfpr.model;
 
 import br.edu.utfpr.model.Produto;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-
 
 /**
  *
  * @author Joao Henrique
  */
 @SessionScoped
-public class CarrinhoDeCompras implements Serializable{
+public class CarrinhoDeCompras implements Serializable {
 
     private List<Produto> itens = new ArrayList<Produto>();
+    private String total;
+
+    public CarrinhoDeCompras() {
+    }
+
+    public void adicionaItem(Produto item) {
+        if (!itens.contains(item)) {
+            itens.add(item);
+        }
+    }
+
+    public void removeItem(Long id) {
+        for (Produto p : itens) {
+            if(p.getId().equals(id)) {
+                itens.remove(p);
+                break;
+            }
+        }
+    }
+
+    public void encerraCarrinho() {
+        itens.clear();
+    }
+
+    public String getTotal() {
+        Double t = 0.0;
+        for (Produto p : itens) {
+            t += p.getPreco().doubleValue();
+        }
+        return t + "";
+    }
 
     public List<Produto> getTodosOsItens() {
         return itens;
     }
-
-    public void adicionaItem(Produto item) {
-        itens.add(item);
-    }
-
 }

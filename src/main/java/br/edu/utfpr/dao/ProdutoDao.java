@@ -38,8 +38,15 @@ public class ProdutoDao {
         return manager.find(Produto.class, id);
     }
     public void adicionar(Produto p){
-        manager.persist(p);
+        if (p.getId()==null){
+            manager.persist(p);
+        }else{
+            manager.merge(p);
+        }
     
+    }
+    public Produto busca(Produto p){
+        return manager.find(Produto.class, p.getId());
     }
     public void editar(Produto p){
         manager.merge(p);
