@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="/WEB-INF/jsp/cabecalho.jsp"%>
+<%@include file="/WEB-INF/jsp/rodape.jsp"%>
 <!DOCTYPE html>
 
 <html>
@@ -19,16 +20,20 @@
                     <div class="span12">
                         <div class="well" id="div-carrinho">
                             <c:if test="${not empty carrinho.total }">
-                                <h2>Carrinho: ${carrinho.total}</h2> <a href="<c:url value="/cart/clear" />"><button>Encerrar Compra</button></a>
+                                <h3>Carrinho: ${carrinho.total}</h3> <a href="<c:url value="/produto/carrinho/clear" />"><button>Encerrar Compra</button></a>
                             </c:if>
                         </div>
                         <div class="well" id="form-cadastro" >
-                            <form method="POST" action="${linkTo[ProdutoController].adicionar}">
+                            <c:if test="${not empty mensagem}">
+                                <span style="color:green">${mensagem}</span>
+                            </c:if>
+                            <form method="POST" action="${linkTo[ProdutoController].salvar}">
                                 <fieldset> 
                                     <legend> Cadastrar Produto</legend>
                                     <div class="row">
                                         <label class="span3">Nome</label>
                                         <label class="span3">Descrição</label>
+                                        <label class="span3">Categoria</label>
                                         <label class="span3">Preço</label>
                                     </div> 
                                     <br />
@@ -40,8 +45,19 @@
                                             <input type="text" id="descricao" class="input-medium" name="p.descricao" required/>
                                         </span>
                                         <span class="span3">
+                                            <select id="idCat" name="p.categoria.id">
+                                                 <option selected="idCat">--Selecione--</option> 
+                                                    <c:forEach items="${categorias}" var="cat">
+                                                        <option value="${cat.id}">${cat.descricao}</option>
+                                                    </c:forEach>
+                                            </select>    
+                                        </span>
+                                        <span class="span3">
                                             <input type="text" id="preco" class="input-medium" name="p.preco" required />
                                         </span>
+                                        <br />
+                                        <br />
+                                       
                                         <span class="span3">
                                             <button type="submit" id="btn-salvar" class="btn btn-primary">Salvar</button>
                                             <button type="button" id="btn-cancelar" class="btn btn-danger">Cancelar</button>
@@ -64,9 +80,8 @@
                                         <th>ID</th>
                                         <th>Nome</th>
                                         <th>Descrição</th>
-                                        <th>Preço R$</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Categoria</th>
+                                        <th>Preço</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -77,55 +92,19 @@
                                             <td>${p.id}</td>
                                             <td>${p.nome}</td>
                                             <td>${p.descricao}</td>
+                                            <td>${p.categoria.descricao}</td>
                                             <td>${p.precoFormatado}</td>
                                             <td><button  class="btn btn-info" id=btn-detalhes" onclick="mostraDetalhe(${p.id});">Detalhes</button></td>
-                                            <td><button  class="btn btn-warning" onclick="editar();" id=btn-editar" >Editar</button></td>
-                                            <td><a href="editar?id=${p.id}">Editar</a></td>
-                                            <td><a href="<c:url value="/produto/${p.id}/remover" />"><button  class="btn btn-danger" id=btn-remover">Remover</button></a></td>
-                                            <td><a href="<c:url value="/cart/${p.id}/adicionar" />"><button  class="btn btn-success" id=btn-comprar">Comprar</button></a></td>   
-                                            <td><button type="_method" id="btn-excluir" value="DELETE"  class="btn btn-danger"> Excluir </button> </td>
-                                        </tr>
+                                            <td><a href="<c:url value="/produto/carrinho/${p.id}/adicionar" />"><button  class="btn btn-success" id=btn-comprar">Comprar</button></a></td>   
+                                            </tr>
 
                                     </c:forEach>
                                 </c:if>
                             </table>
                         </div>
-
-                        <div class="well" id="form-edita-cadastro" >
-                            <form method="POST">
-                                <fieldset> 
-                                    <legend> Editar Produto</legend>
-                                    <div class="row">
-                                        <label class="span3">Nome</label>
-                                        <label class="span3">Descrição</label>
-                                        <label class="span3">Preço</label>
-                                    </div> 
-                                    <br />
-                                    <div class="row">
-                                        <span class="span3">
-                                            <input type="text" id="nome" class="input-medium" name="p.nome" required/>
-                                        </span>
-                                        <span class="span3">
-                                            <input type="text" id="descricao" class="input-medium" name="p.descricao" required/>
-                                        </span>
-                                        <span class="span3">
-                                            <input type="text" id="preco" class="input-medium" name="p.preco" required />
-                                        </span>
-                                        <span class="span3">
-                                            <button type="submit" id="btn-salvar" class="btn btn-primary">Salvar</button>
-                                            <button type="button" id="btn-cancelar" class="btn btn-danger">Cancelar</button>
-                                        </span>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
-            <hr>
-            <footer>
-                <p>&copy; VRAPROT4 - by João Henrique Senger
-            </footer>
         </div>
 
         <div id="overlay">

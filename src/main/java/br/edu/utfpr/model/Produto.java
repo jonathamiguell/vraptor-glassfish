@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.edu.utfpr.model;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -20,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 
-
-
 /**
  *
  * @author Joao Henrique
@@ -30,17 +29,27 @@ import javax.transaction.Transactional;
 //@Transactional
 @Table(schema = "vraptor", name = "Produto")
 public class Produto implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String nome;
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String descricao;
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal preco;
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public Produto() {
     }
@@ -83,8 +92,9 @@ public class Produto implements Serializable {
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
-    public String getPrecoFormatado(){
-        Locale l = new Locale("pt","BR");
+
+    public String getPrecoFormatado() {
+        Locale l = new Locale("pt", "BR");
         DecimalFormat df = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(l));
         return df.format(this.preco);
     }
@@ -94,6 +104,7 @@ public class Produto implements Serializable {
         int hash = 3;
         hash = 79 * hash + Objects.hashCode(this.id);
         hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.categoria);
         return hash;
     }
 
@@ -109,12 +120,20 @@ public class Produto implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         return true;
     }
-    
-    
-    
+    @Override
+    public String toString() {
+        return this.descricao;
+    }
+
 }

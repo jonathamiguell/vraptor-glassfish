@@ -1,5 +1,5 @@
 <%-- 
-    Document   : cabecalho
+    Document   : rodape
     Created on : 06/12/2014, 20:41:57
     Author     : Joao Henrique
 --%>
@@ -35,10 +35,10 @@
 
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
-	    <div class="navbar-inner">
+	<div id="rodape">
+	    <div id="navbar-inner">
 	        <div class="container">
-	            <a href="/vraptor-glassfish/" class="brand">VRAPTOR 4</a>
+	            <a class="brand">VRAPTOR 4 - By João Henrique Senger</a>
 	            <div class="nav-collapse collapse pull-right">
 	            	
 	            </div>
