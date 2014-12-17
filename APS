@@ -1,0 +1,34 @@
+Atividade Pratica Supervisionada
+
+Ferramentas Utilizadas no desenvolvimento do projeto final da Disciplina de Frameworks 
+
+Vraptor -> Framework extremamente produtivo para o desenvolvimento WEB com CDI, utilizando-se do conceito MVC o projeto 
+final desta disciplina tem como base este framework somando-se do uso de frameworks ou ferramentas descritas abaixo.
+
+Glassfish -> Foi escolhido como servidor de Aplicação fornecendo serviços de infraestrutura por exemplo "logging", 
+"requests HTTP" entre outros, diferente do Tomcat que é servlet container o Glassfish implementa todas as as 
+especificações da API Java EE e também algumas especificações para componentes Java EE, como Enterprise JavaBeans,
+conectores, servlets, portlets, JSF e diversas tecnologias de web services 
+
+MYSQL -> Como sistema gerenciador de banco de dados foi escolhido o MYSQL é um dos bancos de dados mais populares
+possuindo mais de 10 milhões de instalações pelo mundo, possuie um grande portabilidade suportando praticamente qualquer
+plataforma atual, conta com módulos de interface para diversas linguagens de programação ,como Delphi, Java, C/C++, C#, 
+Visual Basic, Python, Perl, PHP, ASP e Ruby possuindo um grande desenpenho e estabilidade.
+
+Java Script AJAX jquery -> Para a execuão de ações em paginas HTML o java script foi utilizado e para agilizar o uso do 
+java script o Jquery foi implementado possui uma biblioteca pronta de ações que permitem produzir melhor com menos codigo 
+fonte tornando o desenvolvimento agil e mais limpo e o com uso de AJAX que realiza atualizações em pequenas partes da pagina. 
+
+CSS 3 Bootstrap -> Para a formatação do conteudo do projeto o css que é uma tecnologia usada para formatação de conteúdos 
+estruturadosem HTML com inumeros beneficios para o desenvolvedor como:
+		Controle do layout de vários documentos a partir de uma simples folha de estilos;
+		Maior precisão no controle do layout;
+		Aplicação de diferentes layouts para servir diferentes mídias (tela, impressora, etc.);
+Bootstrap que é uma framework front-end utilizado para agilizar desenvolvimento de sites e aplicações web. Possuie um conjunto
+de recursos visuais (css, less, ícones), estruturais (grids, navegação e html semântico) e dinâmicos (javascript e ajax).	
+ 
+Hibernate JPA-> framework escolhido para persistencia no banco de dados auxiliando na fase de organização, construção e 
+manutenção de um banco de dados dentro do projeto eliminando a burrocracias como por exemplos utilizar inserts manuais 
+em SQL. JPA é framework leve baseado em POJO foi implementado no projeto para juntamente com o framework Hibernate para o desenvolvedor não se preocupando na criação de tabelas no banco de dados e seus relacionamentos. 
+
+
